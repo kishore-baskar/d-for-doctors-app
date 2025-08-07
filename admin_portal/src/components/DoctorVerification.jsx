@@ -9,15 +9,22 @@ const DoctorVerification = () => {
 
   useEffect(() => {
     const fetchDoctors = async () => {
+      console.log('Starting to fetch doctors...');
       setLoading(true);
       try {
         const querySnapshot = await getDocs(collection(db, 'doctors'));
+        console.log('Firestore query snapshot:', querySnapshot);
+        if (querySnapshot.empty) {
+          console.log('No documents found in the doctors collection.');
+        }
         const doctorsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        console.log('Fetched doctors list:', doctorsList);
         setDoctors(doctorsList);
       } catch (error) {
-        console.error("Error fetching doctors: ", error);
+        console.error('Error fetching doctors: ', error);
       }
       setLoading(false);
+      console.log('Finished fetching doctors.');
     };
 
     fetchDoctors();
