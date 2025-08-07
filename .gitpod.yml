@@ -1,0 +1,12 @@
+tasks:
+  - name: Admin Portal
+    before: |
+      cd admin_portal
+      npm install --force
+    command: |
+      cd admin_portal
+      npm run dev
+
+ports:
+  - port: 5173
+    onOpen: open-browser
