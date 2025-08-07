@@ -5,8 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: true, // Allow access from the network
+    host: true, // Listen on all addresses
     strictPort: true,
     port: 5173, // Match the port in .gitpod.yml
+    // Explicitly allow all Gitpod hosts
+    allowedHosts: ['.gitpod.io'],
   },
 })
